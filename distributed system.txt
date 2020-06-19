@@ -1,0 +1,28 @@
+distribute system
+
+Mapreduce: simpilfied data processing on big cluster
+	
+	user generate a set of intermiediate key/values pair, and a reduce function that merge all intermidiate 
+	values associated with same intermidiate key. this allow programmers without any experience with parallel 
+	and distritubuted sytsem to utilize the distributed system.
+
+	implementation:
+	the procedure of map reduce function:
+		1: the main mapreduce function separate the data into several parts, and start the map and reduce
+		function. 
+		2:the is one master function which assigned M map tasks and R reduce task. the master function
+		assign the task to idle workers.
+		3:the worker who is assigned map task read the input file. it pass the each k/v pair to map 
+		function and buffered in the memory.
+		4:the buffer pair write in the local disc, the location of those pair pass to master, which could
+		be used by the reduce funtion.
+		5:the reduce function read the buffer data from the local disks. it sort and group it together.
+		if the data is too large the external sort is used.
+		6:the reduce iterates over the sorted intermediate data and for each unique key, it pass the key
+		to user's reduce funtion. the output would append to the final output. 
+		7:return to the master
+
+	input and output types:
+	performance:
+	1:search through one terabyte data and find a specific pattern.
+	2:sort one terabyte data.

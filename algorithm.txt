@@ -70,5 +70,62 @@ question 41 First Missing Positive
 	nums once and put every number in right position. then I traversal the help array from small to big, 
 	once we found there's a 0, which means we find the smallest positive number.
 
+6.3 
+question 32 longest valid parentheses
+	dynamic programming problem
+	in this question, I'm going to use a one-dimensional array to solve this problem.
+	in the helpe array, we set first, second as 0. 
+	when we meet the '(', we set it as 0, as there's no succuss parentheses. when we meet the ')' we 
+	check the previous character if it's '(' we do help[n]=help[n-2]+2 
+	otherwise if it's ')' we do help[n]=help[n-1]+help[n-help[n-1]-2]+2;
+	finally, keep track the largest number and get answer;
+
+6.16
+question 53 maximum Subarray
+	dynamic programming problem
+	in this question, we need to separate it into small question. we use a list to save the maximum value at
+	each position. 
+	so when the array length is 1, we know that the max is this value, when the length is two, we check the
+	max(list[i-1]+nums[i],nums[i]), as we know at the position i, we have already know the maximum of position
+	i-1, we need to check whether we are going to include i, if the vlaue is larger, we put it in, if the 
+	value is smaller, we put the current value nums[i], as in the list vlaue at postion i means the maximum
+	value which include the number at position i. 
+	finally from the list we get the max value.
+
+question 54 spiral matrix
+	array programming 
+	in this question, we keep track the number layer by layer, I'm going to use the outside layer to make 
+	an example. at every layer there are four process, which we first get the toppest part, then the right
+	part, bottom part, finally the left part. in this process we need to keep updating the boudary number.
+
+question 55 jump game
+	this is a pretty easy question. we could use the greedy method. we start from the zero point, we define
+	a pointer which means the most rightest point we could reach. at every element we first judge whether 
+	it could reach, (rightmost>i), if not we return flase, then we update the most right postion.
+
+question 56 merge interval
+	there are two steps to solve this problem. the first step is we need to sort this array using quick
+	sort. I'm going to quickly review the quick sort. we set the first number in the array as a index. 
+	we go back from front to find the number which is smaller than the index. then we put that number at 
+	the index position. then we start from front to back find the number which is larger than the index,we 
+	put the larger number at the position of the smaller number. and we put the index at the large number
+	position. after we track the whole array, we could separate the array into two part, the number in front
+	part is smaller than the index. 
+	the second step is merge these array. we just merge the array one by one and finally get the result.
+
+question 59 spiral matrix II
+	same as the question 54, just use a while loop with four for loop.
+
+6.17 
+question 60 permutation Sequence
+	it's a permutation quesition, but we can't use permutation as we can't access the spesific position.
+	we need to use the residue to get every number. we define a help method to get every number. we calculate
+	(n-1)! to find the relative position in the list.
+
+question 61 rotate list 
+	it's a easy question, we don't need any recursive method. we first combine the tail and head to make the
+	listnode become a ring. then we find the correct position and separate it to get the answer.
+
+
 
 	         

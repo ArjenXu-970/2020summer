@@ -1,0 +1,93 @@
+assembly language and language C
+
+6.4
+switch statement:
+	the general form of switch structure in c is :
+			switch(n){}
+			case 1:
+			case 2:
+			...
+			default:
+	in AL we use jmp to control the switch to every case. also we create a jmp table ordered by the 
+	number of case, which is easily for the pointer to jmp to the relative position.
+
+6.5
+the run time stack 
+	we know that a program counter is a computer processor that contain the address of instruction being
+	eecute at current time.
+	in the computer the stack grows toward the lower address, when procedure P called procudure Q, it will 
+	push the return address at the end of procedure P, indicate procedure P will resume when Q finished.
+	the function Q would extented the current stack boundary. for example:
+		1 0000000000400540 <multstore>: 
+		2 400540: 53 push %rbx 
+		3 400541: 48 89 d3 mov %rdx,%rbx 
+		... 
+		Return from function multstore 
+		4 40054d: c3 retq 
+		...
+		Call to multstore from main 
+		5 400563: e8 d8 ff ff ff callq 400540 <multstore> 
+		6 400568: 48 8b 54 24 08 mov 0x8(%rsp),%rdx
+	from the above sample assmebly code, the process is like in the main program, at the beginning the stack
+	pointer %rsp point to the address 840 the program counter %rip point to the 563 and it called the 
+	function multistore, the program counter go the add 540 and the %rsp subtracted by 8 to 838, after the 
+	multistore function finished, the program counter %rip back to next line in main which is 568, the stack
+	pointer %rsp go back to 840.
+
+6.8 
+	some gcc terminal command 
+	gcc -c change language c to binary code.
+	gcc -S change language c output assembly code.
+	gcc -o >file name   change language c output assembly code with address. 
+	argument table  caller saved register
+		1	2	3	4	5	6
+	64	%rdi    %rsi    %rdx    %rcx    %r8     %r9
+	32	%edi	%esi    %edx    %ecx	%r8d	%r9d
+	16	%di	%si     %dx     %cx	%r8w	%r9w
+	8	%dil	%sil    %dl     %cl	%r8b	%r9b
+	when it has more than 6 parameter, it will pass it onto the stack, and data size round up to 8.
+
+6.10 
+	mingw32 and mingw64	
+	local storage in registers
+	when some procedure called others, such the caller called the callee, the callee cannot overwrite 
+	some register. so there are some callee saved register
+	%rbx &rbp %r12 %r13 %r14 %r15
+
+	recursion procedure
+		
+6.15	
+	basic c language
+	int a means a is a value, use &a to access it address;
+	int *a means *a is to the value at address a, and the address is a, we could also use &*a to 
+	access it address;
+	int **a is a second level pointer, it point to a address of a pointer. **a is value, *a is the address
+	of that value,a is the address of the address which store the value;
+
+	array allocation in assembly code
+	array: int arr[10], use arr[5] to access the data;&arr means the start address equal to &arr[0];
+	arr is also the address, and *arr point to the first value,*(arr+1) point to the second value;
+	
+	int* a[10] is an array which every element is a address element. we could use a[5] to access it value,
+	use *a[5] to access the content which store at the address a[5]
+	
+	int (*a)[10] is a array pointer, which point to the whole array, the address is same with the 0th element
+	of the array, but it's totally different with the 0th element pointer.
+
+	int **a[10] is a second level pointer which in every position, it store a address, and the address point
+	to a address and the address point to a value;
+
+	char a[10] is an char array we need to use %c to access the char. use %s a to print the whole array.
+	
+	in assembly language we use this to access the value. in 64 bit computer, a pointer is 8 bit.
+	movl (%rdx,%rcx,4),%eax
+
+
+
+					
+
+
+
+
+
+
