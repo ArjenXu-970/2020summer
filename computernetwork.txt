@@ -1,0 +1,107 @@
+5 layer model
+	1.physical layer
+	2.data link layer ethernet WIFI
+		common signal define at this layer
+	3.network IP
+		allow different network connect with each other 
+	4.transport layer tcp/udp
+		tcp/udp   tcp data relaible transport 
+	5.application layer 
+		http
+
+cable Cables are what connect different devices to each other allowing data to be transmitted over them.
+hub a phiscal layer device that allows for connections from many computers at once 
+switch send signal between each device 
+router forward data between independent networks 
+border gateway protocol
+modulation a way of varying the voltage of this charge moving across the cable 
+
+ethernet
+CSMA/CD
+A MAC address is a globally unique identifier attach to an individual network interface  is a 48 bit number
+represent by 6 groups of 2 hexdecimal number 
+
+unicast frame 
+multicast frame
+broadcast   address ff:ff:ff:ff:ff:Ff
+
+discecting an ethernet 
+ethernet frame preamble destination address  sources address vlan tag    type  pay load	 	FCS
+		8byte		6byte		6byte		4byte	2byte	data 46-1500byte	4byte
+
+IP adress
+	32bit long
+	static IP address 
+	dynamic IP address
+
+IP datagram	0-4 bit version such as ipv4
+		4-8 bit header length field  20 length when dealing with ipv4
+		8-16 service type field  qos technology
+		16-32 total length field  indicate the total length of the IP datagram it attach to
+		identification  check whether it's same datagram
+		flag/fragment offset whether it need and how many pieces it split into 
+		TTL time to live how many router hops it could pass 
+		protocol whcich protocol to use 
+		header checksum same as the ethernet checksum
+		source ip address
+		destination ip adress
+		ip option field  set speical characteristics for datagrams primarily used for testing purpose
+		padding 
+
+ip address network id and host id  
+	calss a，b,c address  a 0-126  b 128-191 c 192-223
+
+how the data link layer and network layer relate to each other 
+address resolution protocol 
+ used to discover a hardware address node with a certain ip address
+ 
+ subnet
+ subnet mask 
+ 	network id identify network 
+	host id identify individual host
+	subnet id two part
+		a part of number with ones which could ignore when computing host id 
+
+CIDR
+	classes inter-domain routing
+
+router
+	a network device that forwards traffic depending on the destination address of that traffic 
+
+basic routing 4 steps 
+	1.recieve data pack 
+	2.examines destination ip
+	3.look up ip destination network in routing table 
+	4.forward data to destination
+
+the process of send one data from one computer to other computer through internet 
+	1. the computer A  send the package to MAC address of its gateway the router.
+	2.the router take the data and duplicate it, decrement the TTL and calcualte a new checksum
+	3. encapusulate the new IP datagram into a new ethernet frame. set the mac address as computer B
+	4. the data get delieveyed
+
+routing table 4 column 
+	1. destination network  network id and mask /CDIR
+	2. next hop  next router that should recive data indend for the destination network
+	3. total hops calculate the best path
+	4. interface 
+
+routing protocol
+	interrior gateway protocol
+		share info between single autonmous system
+		1.link-state protocol 
+			complex use algo to determine the best path 
+		2.distance vector protocol
+		
+	exterior  gateway protocol
+		used between independent system
+		iana internet assigned number authority(ip allocation) resposible for autonomous system number allocation
+
+	
+	two router could influce their router table 
+	router use link-state protocol to determine the best path 
+
+non-routable address space 
+	10.0.0.0/8
+	172.16.0.0/12
+	192.168.0.0/16
